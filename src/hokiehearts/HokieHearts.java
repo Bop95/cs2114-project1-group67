@@ -13,9 +13,7 @@ public class HokieHearts
     private ArrayList<Person> people;
 
 
-    /**
-     * Creates an empty Hokie Hearts system.
-     */
+    /** Creates an empty Hokie Hearts system. */
     public HokieHearts()
     {
         people = new ArrayList<Person>();
@@ -24,7 +22,6 @@ public class HokieHearts
 
     /**
      * Adds a valid person whose email is not already registered.
-     *
      * @param person the person to add
      * @return true when the person is added
      */
@@ -40,7 +37,6 @@ public class HokieHearts
 
     /**
      * Removes a person.
-     *
      * @param person the person to remove
      * @return true when the person was stored and removed
      */
@@ -52,7 +48,6 @@ public class HokieHearts
 
     /**
      * Finds a person by VT email, ignoring capitalization.
-     *
      * @param email the email to find
      * @return the matching person, or null when not found
      */
@@ -62,7 +57,6 @@ public class HokieHearts
         {
             return null;
         }
-
         for (Person person : people)
         {
             if (person.getEmail().equalsIgnoreCase(email.trim()))
@@ -76,7 +70,6 @@ public class HokieHearts
 
     /**
      * Creates a match between two different stored people.
-     *
      * @param firstPerson the first person
      * @param secondPerson the second person
      * @return the match, or null for invalid input
@@ -94,12 +87,9 @@ public class HokieHearts
 
 
     /**
-     * Finds every person tied for the selected person's highest compatibility
-     * score.
-     *
+     * Finds every person tied for the selected person's highest score.
      * @param person the person looking for a match
-     * @return the best matches, or an empty list for invalid input or when no
-     *         other profiles exist
+     * @return the best matches
      */
     public ArrayList<Match> findBestMatches(Person person)
     {
@@ -116,7 +106,6 @@ public class HokieHearts
             {
                 Match match = new Match(person, candidate);
                 double score = match.getCompatibilityScore();
-
                 if (score > bestScore)
                 {
                     bestMatches.clear();
@@ -135,7 +124,6 @@ public class HokieHearts
 
     /**
      * Checks whether an address belongs to the vt.edu domain.
-     *
      * @param email the email to check
      * @return true for a valid VT email
      */
@@ -145,7 +133,6 @@ public class HokieHearts
         {
             return false;
         }
-
         String cleaned = email.trim().toLowerCase();
         int atIndex = cleaned.indexOf('@');
         return atIndex > 0 && atIndex == cleaned.lastIndexOf('@')
@@ -153,11 +140,7 @@ public class HokieHearts
     }
 
 
-    /**
-     * Gets the stored people.
-     *
-     * @return the people
-     */
+    /** @return the stored people */
     public ArrayList<Person> getPeople()
     {
         return people;

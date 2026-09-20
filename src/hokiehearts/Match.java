@@ -18,10 +18,8 @@ public class Match
 
     /**
      * Creates and calculates a match between two people.
-     *
      * @param firstPerson the first person
      * @param secondPerson the second person
-     * @throws IllegalArgumentException if either person is null
      */
     public Match(Person firstPerson, Person secondPerson)
     {
@@ -29,7 +27,6 @@ public class Match
         {
             throw new IllegalArgumentException("People cannot be null.");
         }
-
         this.firstPerson = firstPerson;
         this.secondPerson = secondPerson;
         sharedPreferences = findSharedPreferences();
@@ -37,33 +34,35 @@ public class Match
     }
 
 
-    /**
-     * Gets the first person.
-     *
-     * @return the first person
-     */
+    /** @return the first person */
     public Person getFirstPerson()
     {
         return firstPerson;
     }
 
 
-    /**
-     * Gets the second person.
-     *
-     * @return the second person
-     */
+    /** @return the first person, using the original team method name */
+    public Person getPerson1()
+    {
+        return getFirstPerson();
+    }
+
+
+    /** @return the second person */
     public Person getSecondPerson()
     {
         return secondPerson;
     }
 
 
-    /**
-     * Finds the unique preferences shared by both people.
-     *
-     * @return the shared preferences
-     */
+    /** @return the second person, using the original team method name */
+    public Person getPerson2()
+    {
+        return getSecondPerson();
+    }
+
+
+    /** @return the unique preferences shared by both people */
     public ArrayList<Preference> findSharedPreferences()
     {
         ArrayList<Preference> shared = new ArrayList<Preference>();
@@ -79,41 +78,40 @@ public class Match
     }
 
 
-    /**
-     * Calculates shared preferences divided by all unique preferences.
-     *
-     * @return a percentage from 0 through 100
-     */
+    /** @return shared preferences divided by all unique preferences */
     public double calculateCompatibility()
     {
         ArrayList<Preference> unique = new ArrayList<Preference>();
         addUnique(unique, firstPerson.getPreferences());
         addUnique(unique, secondPerson.getPreferences());
-
         if (unique.isEmpty())
         {
-            return 0.0;
+            compatibilityScore = 0.0;
         }
-        return sharedPreferences.size() * 100.0 / unique.size();
+        else
+        {
+            compatibilityScore = sharedPreferences.size() * 100.0
+                / unique.size();
+        }
+        return compatibilityScore;
     }
 
 
-    /**
-     * Gets the calculated compatibility percentage.
-     *
-     * @return the compatibility score
-     */
+    /** @return the compatibility score */
     public double getCompatibilityScore()
     {
         return compatibilityScore;
     }
 
 
-    /**
-     * Gets the shared preferences.
-     *
-     * @return the shared preferences
-     */
+    /** @return the score, using the original team's method spelling */
+    public double getCompatabilityScore()
+    {
+        return getCompatibilityScore();
+    }
+
+
+    /** @return the shared preferences */
     public ArrayList<Preference> getSharedPreferences()
     {
         return sharedPreferences;

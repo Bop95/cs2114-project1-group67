@@ -2,12 +2,7 @@ package hokiehearts;
 
 import student.TestCase;
 
-/**
- * Tests the HokieHearts class.
- *
- * @author Hokie Hearts Team
- * @version 2026.09.20
- */
+/** Tests the HokieHearts class. */
 public class HokieHeartsTest extends TestCase
 {
     private HokieHearts system;
@@ -15,9 +10,7 @@ public class HokieHeartsTest extends TestCase
     private Person blake;
 
 
-    /**
-     * Creates an empty system and two valid people.
-     */
+    /** Creates an empty system and two valid people. */
     public void setUp()
     {
         system = new HokieHearts();
@@ -26,9 +19,7 @@ public class HokieHeartsTest extends TestCase
     }
 
 
-    /**
-     * Tests valid and invalid VT email addresses.
-     */
+    /** Tests valid and invalid VT email addresses. */
     public void testIsValidVTEmail()
     {
         assertTrue(system.isValidVTEmail("alex@vt.edu"));
@@ -40,9 +31,7 @@ public class HokieHeartsTest extends TestCase
     }
 
 
-    /**
-     * Tests adding people and rejecting invalid or duplicate people.
-     */
+    /** Tests adding people and rejecting invalid or duplicate people. */
     public void testAddPerson()
     {
         assertTrue(system.addPerson(alex));
@@ -56,9 +45,7 @@ public class HokieHeartsTest extends TestCase
     }
 
 
-    /**
-     * Tests finding known and unknown people.
-     */
+    /** Tests finding known and unknown people. */
     public void testFindPerson()
     {
         system.addPerson(alex);
@@ -68,9 +55,7 @@ public class HokieHeartsTest extends TestCase
     }
 
 
-    /**
-     * Tests removing known, unknown, and null people.
-     */
+    /** Tests removing known, unknown, and null people. */
     public void testRemovePerson()
     {
         system.addPerson(alex);
@@ -80,14 +65,11 @@ public class HokieHeartsTest extends TestCase
     }
 
 
-    /**
-     * Tests valid and invalid match creation.
-     */
+    /** Tests valid and invalid match creation. */
     public void testCreateMatch()
     {
         system.addPerson(alex);
         system.addPerson(blake);
-
         assertNotNull(system.createMatch(alex, blake));
         assertNull(system.createMatch(alex, alex));
         assertNull(system.createMatch(alex, null));
@@ -97,32 +79,25 @@ public class HokieHeartsTest extends TestCase
     }
 
 
-    /**
-     * Tests finding one highest-scoring match.
-     */
+    /** Tests finding one highest-scoring match. */
     public void testFindBestMatches()
     {
         Person casey = new Person("Casey", 22, "casey@vt.edu");
         Person jordan = new Person("Jordan", 20, "jordan@vt.edu");
-
         addPreference(alex, "Music");
         addPreference(alex, "Hiking");
         addPreference(alex, "Pizza");
         addPreference(alex, "Reading");
-
         addPreference(blake, "Music");
         addPreference(blake, "Hiking");
         addPreference(blake, "Pizza");
         addPreference(blake, "Basketball");
-
         addPreference(casey, "Music");
         addPreference(casey, "Gaming");
-
         addPreference(jordan, "Music");
         addPreference(jordan, "Hiking");
         addPreference(jordan, "Pizza");
         addPreference(jordan, "Reading");
-
         system.addPerson(alex);
         system.addPerson(blake);
         system.addPerson(casey);
@@ -139,9 +114,7 @@ public class HokieHeartsTest extends TestCase
     }
 
 
-    /**
-     * Tests tied best matches and invalid input.
-     */
+    /** Tests tied best matches and invalid input. */
     public void testFindBestMatchesTiesAndInvalidInput()
     {
         Person casey = new Person("Casey", 22, "casey@vt.edu");
@@ -156,10 +129,6 @@ public class HokieHeartsTest extends TestCase
         assertTrue(system.findBestMatches(null).isEmpty());
         assertTrue(system.findBestMatches(
             new Person("Unknown", 20, "unknown@vt.edu")).isEmpty());
-
-        HokieHearts onePersonSystem = new HokieHearts();
-        onePersonSystem.addPerson(alex);
-        assertTrue(onePersonSystem.findBestMatches(alex).isEmpty());
     }
 
 

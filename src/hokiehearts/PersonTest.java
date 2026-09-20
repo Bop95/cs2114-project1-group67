@@ -16,7 +16,7 @@ public class PersonTest extends TestCase
 
 
     /**
-     * Creates fresh test objects before each test.
+     * Creates test objects before each test.
      */
     public void setUp()
     {
